@@ -54,20 +54,7 @@ void ACQuest::CheckCondition()
 		ClearState = EQuestClearState::Q_BeforeProgress;
 		return;
 	}
-	//CheckNull(Player);
-	/*TArray<ACQuest*> quest = Player->QuestRecipient->GetQuestClearList();
-	for (int i = 0; i < quest.Num(); i++)
-	{
-		if (quest[i]->GetClass() == QuestCondition)
-		{
-			ClearState = EQuestClearState::Q_BeforeProgress;
-			return;
-		}
-	}*/
-	/*if (QuestCondition->GetClearState() == EQuestClearState::Q_Complete)
-	{
-		ClearState = EQuestClearState::Q_BeforeProgress;
-	}*/
+
 }
 
 void ACQuest::CheckCancelCondition()
@@ -75,18 +62,10 @@ void ACQuest::CheckCancelCondition()
 	CheckTrue(bCantProgress);
 	if (GetQuestConditionState(QuestCancelCondition) == EQuestClearState::Q_Complete)
 	{
-		/*TArray<ACQuest*> quest = Player->QuestRecipient->GetQuestClearList();
-		for (int i = 0; i < quest.Num(); i++)
-		{
-			if (QuestCancelCondition != NULL)
-			{
-				if (quest[i]->GetClass() == QuestCancelCondition)
-				{*/
 		ClearState = EQuestClearState::Q_None;
 		bCantProgress = true;
 		return;
-		//	}
-		//}
+
 	}
 }
 
@@ -98,7 +77,6 @@ bool ACQuest::CheckClearCondition()
 
 FString ACQuest::GetQuestContent_Implementation()
 {
-	CLog::Log("GetQuestContent Line 69");
 	return ClearCondition->GetContent();
 }
 
