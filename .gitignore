@@ -1,0 +1,12 @@
+/.vs
+/Source/.vs
+/Intermediate
+/Saved
+/LuosEightElements.png
+/Tropical_Jungle_Pack.png
+/Config
+/Content
+/GermanShepherd_M.png
+*.sln
+*._BuiltData.uasset
+/C_Portfolio.sln
