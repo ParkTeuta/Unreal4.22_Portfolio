@@ -207,7 +207,6 @@ void ACPlayer::Tick(float DeltaTime)
 			CursorToWorld->SetWorldLocation(TraceHitResult.Location);
 			CursorToWorld->SetWorldRotation(CursorR);
 
-			//CLog::Log(TraceHitResult.Location);
 		}
 	}
 
@@ -217,25 +216,6 @@ void ACPlayer::Tick(float DeltaTime)
 		Status->AddHealth(AutoHeal);
 		TimeCount = 0.0f;
 	}
-
-	/*if (CC->IsCC())
-	{
-		CC->CCTick(DeltaTime);
-		if (CC->IsAirborne() && State->IsIdle())
-		{
-			if (GetMovementComponent()->IsFalling() == false)
-			{
-				CC->ResetAirborne();
-				State->SetIdleMode();
-			}
-		}
-		return;
-	}*/
-
-	//if (!!Enemy && bBaseAttack)
-	//{
-	//	Attack();
-	//}
 
 	if (State->IsAttack())
 	{
@@ -256,20 +236,6 @@ float ACPlayer::TakeDamage(float DamageAmount, FDamageEvent const & DamageEvent,
 
 	DamageInstigator = EventInstigator;
 	DamageValue = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-
-	/*ACAttackObject* attackObject = Cast<ACAttackObject>(DamageCauser);
-	ACSkill* skill = (attackObject != NULL) ? attackObject->GetOwnerSkill() : Cast<ACSkill>(DamageCauser);
-	if (skill != NULL)
-	{
-		ECrowdControl DamageCC = skill->GetCC();
-		float DamageCCTime = skill->GetCCTime();
-		if (DamageCC != ECrowdControl::None)
-		{
-			CC->SetCCMode(DamageCC, DamageCCTime);
-			State->SetHittedMode();
-		}
-	}*/
-	//State->SetHittedMode();
 
 	Status->SubHealth(DamageValue);
 	UpdateHealthBar();
@@ -383,17 +349,9 @@ void ACPlayer::SetAttackTarget(ACharacter* InEnemy)
 
 void ACPlayer::Attack()
 {
-	//CheckFalse(State->IsIdle());
-	/*if (GetDistanceTo(Enemy) > Status->GetAttackRange())
-		MoveToTarget();
-	else
-	{*/
-		//attackMotion
-		StopMove();
-		SetActorRotation(CHelpers::YawRotator(UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), CLocation)).Quaternion());
-		//State->SetAttackMode();
-		Skills->AttackBehavior();
-	//}
+	StopMove();
+	SetActorRotation(CHelpers::YawRotator(UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), CLocation)).Quaternion());
+	Skills->AttackBehavior();
 }
 
 void ACPlayer::Action()
@@ -472,7 +430,6 @@ void ACPlayer::RefreshQuestItem_Implementation(int32 InCount)
 
 void ACPlayer::AddQuestItem(AActor * InActor, int32 InCount)
 {
-	//RefreshQuestList();
 	QuestRecipient->AddCount(InActor,InCount);
 
 	//뭔가 얻게 되면 다 여기서 처리할거

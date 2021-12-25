@@ -28,6 +28,7 @@ public:
 		class USpringArmComponent* SpringArm;
 	UPROPERTY(BlueprintReadOnly, VisibleDefaultsOnly)
 		class UCameraComponent* Camera;
+
 private:
 	UPROPERTY(VisibleDefaultsOnly)
 		class ACCamera* FreeCamera;
@@ -38,7 +39,7 @@ private:
 
 
 	//Player Components
-	UPROPERTY(VisibleDefaultsOnly)
+	UPROPERTY(VisibleDefaultsOnly) 
 		class UCStateComponent* State;
 
 	UPROPERTY(VisibleDefaultsOnly)
@@ -47,19 +48,19 @@ private:
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCMontagesComponent* Montages;
 
-	UPROPERTY(VisibleDefaultsOnly)
+	UPROPERTY(VisibleDefaultsOnly) //skill 종류 관리
 		class UCSkillComponent* Skills;
 
-	UPROPERTY(VisibleDefaultsOnly)
+	UPROPERTY(VisibleDefaultsOnly) //직업
 		class UCClassComponent* CClasses;
 
-	UPROPERTY(VisibleDefaultsOnly)
+	UPROPERTY(VisibleDefaultsOnly) //일단 에어본만 있음
 		class UCCrowdControlComponent* CC;
 
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCMoveInteractionComponent* MoveInteractionComp;
 public:
-	UPROPERTY(BlueprintReadWrite, VisibleDefaultsOnly)
+	UPROPERTY(BlueprintReadWrite, VisibleDefaultsOnly) //진행중인 quest 관리
 		class UCRecipientComponent* QuestRecipient;
 
 public:
@@ -111,13 +112,14 @@ private:
 		void OnStateTypeChanged(EStateType InPrevType, EStateType InNewType);
 
 public:
+	//키입력관련
 	UFUNCTION(BlueprintPure)
 		bool GetSkillsCanUse();
-
+	//스킬이 어떤 타입인지
 	void SetSkillButton(ESkillButtonType InNewButton);
 	void SetSkillReleased(ESkillButtonType InNewButton);
-	bool GetSKillIsHolding(ESkillButtonType InNewButton);
-	bool GetSKillIsImmediately(ESkillButtonType InNewButton);
+	bool GetSKillIsHolding(ESkillButtonType InNewButton); //누르고 있어야하는지
+	bool GetSKillIsImmediately(ESkillButtonType InNewButton); //즉시시전인지
 
 	void StopMove();
 
